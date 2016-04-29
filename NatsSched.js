@@ -25,11 +25,11 @@ xhttp.onreadystatechange = function() {
 
 // Helper function to parse and display results.
 var handleResponseText = function(text) {
-	console.log(text);
+	//console.log(text);
 	var text_JSON = JSON.parse(text);
 	for (var i = 0; i < MAX_RESULTS; i++) {
 		var datetime = new Date(text_JSON.events[i].datetime_utc);
-		var nextEntry = "<tr> <td>" + text_JSON.events[i].title + "</td> <td>" + datetime.toDateString() + "</td> <td>" + datetime.toTimeString() + "</td> </tr>";
+		var nextEntry = "<tr> <td>" + text_JSON.events[i].title + "</td> <td>" + datetime.toDateString() + "</td> <td>" + datetime.toTimeString() + "</td> <td> $" + text_JSON.events[i].stats.average_price + "</td> </tr>";
 		$('#sched').append(nextEntry);
 	}
 }
