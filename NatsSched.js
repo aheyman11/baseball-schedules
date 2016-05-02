@@ -25,13 +25,15 @@ var handleResponseText = function(text) {
 	var text_JSON = JSON.parse(text); // object from JSON text
 	var table_html = "";
 	for (var i = 0; i < MAX_RESULTS; i++) {
-		var datetime = new Date(text_JSON.events[i].datetime_utc);
-		var nextEntry = "<tr> <td>" + text_JSON.events[i].title + "</td> <td>" + datetime.toDateString() + "</td> <td>" + datetime.toTimeString() + "</td> <td> $" + text_JSON.events[i].stats.average_price + "</td> </tr>";
+		var game = text_JSON.events[i];
+		var datetime = new Date(game.datetime_utc);
+		var nextEntry = "<tr> <td>" + game.title + "</td> <td>" + datetime.toDateString() + "</td> <td>" + datetime.toTimeString() + "</td> <td> $" + game.stats.average_price + "</td> </tr>";
 		table_html += nextEntry;
 	}
 	$('#sched').html(table_html);
 }
 
+// Sends request to backend server
 var handleTeam = function(team) {
 	xhttp.open("GET", "http://127.0.0.1:8081/" + team);
 	xhttp.send();
