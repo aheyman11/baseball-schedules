@@ -23,7 +23,7 @@ xhttp.onreadystatechange = function() {
 // Helper function to parse and display results.
 var handleResponseText = function(text) {
 	var text_JSON = JSON.parse(text); // object from JSON text
-	var table_html = "";
+	var table_html = "<tr> <th> Event </th> <th> Date </th> <th> Time </th> <th> Average Ticket Price </th> </tr>";
 	for (var i = 0; i < MAX_RESULTS; i++) {
 		var game = text_JSON.events[i];
 		var datetime = new Date(game.datetime_utc);
